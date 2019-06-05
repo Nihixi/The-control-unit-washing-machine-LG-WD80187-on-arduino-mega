@@ -69,6 +69,7 @@ void Off_Display() {
 void EndMashine() {
   Off_Mashine();
 
+  mode_child_lock = 0;
   delay2(1000);
   
   indicator[0] = 12;  // E
@@ -153,8 +154,10 @@ void setTime (int time_m) {
   }
   
   // Зпомним переменные, что бы време не отображалось старое, при блокировке.
+  displayBuf[0] = indicator[0];
   displayBuf[1] = indicator[1];
   displayBuf[2] = indicator[2];
+  indicator0 = displayBuf[0];
   indicator1 = displayBuf[1];
   indicator2 = displayBuf[2];
 

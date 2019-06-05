@@ -21,7 +21,7 @@ void SetMinimalPOWER() {
 }
 
 // Функция для расчета средней мощности подаваемой на мотор, для поддержания заданной скорости вращения
-// Изменяет гл. переменную MOTOR_POWER_MINIMAL, которая не должна в итоге, быть меньше MOTOR_POWER_MINIMAL_ORIGINAL и больше MOTOR_POWER_MINIMAL_ORIGINAL + 80%
+// Изменяет гл. переменную MOTOR_POWER_MINIMAL, которая не должна в итоге, быть меньше MOTOR_POWER_MINIMAL_ORIGINAL и больше MOTOR_POWER_MINIMAL_ORIGINAL + 60%
 void add_array_power(int pwmOut_s) {
   if (pwmOut_s > MOTOR_POWER_MINIMAL_ORIGINAL) {
     MOTOR_POWER_Array[MOTOR_POWER_Array_pointer] = pwmOut_s;
@@ -166,7 +166,7 @@ void Motor(boolean MOTOR_direction, int MOTOR_speed, unsigned long MOTOR_time) {
 
     int obm = pwmSpeed * MOTOR_SPEED_rate;
     if (DEBUG_LEVEL >= 3) {
-      addLog("MOTOR_direction: " + String(MOTOR_direction) + " pwmSet: " + String(pwmSet) + " pwmSpeed:" + String(pwmSpeed) + " (" + String(obm) + ") pwmOut:" + String(pwmOut) + " Dimmer:" + String(Dimmer));
+      addLog("MOTOR_direction: " + String(MOTOR_direction) + " pwmSet: " + String(pwmSet) + " pwmSpeed:" + String(pwmSpeed) + " (" + String(pwmSpeedSec) + ") pwmOut:" + String(pwmOut) + " Dimmer:" + String(Dimmer));
     }
 
     if (pwmSpeed == pwmSet) {

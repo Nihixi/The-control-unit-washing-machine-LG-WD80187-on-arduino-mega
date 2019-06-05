@@ -57,8 +57,7 @@ void rinsing(unsigned long rinsing_time) {
     Motor(MOTOR_direction, rinsing_speed, MOTOR_POWER_Time_rinsing);
     delay2(rinsing_pause);
     sumTimeM = floor((millis() - time_Start_rinsing) / 1000 / 60); // Прошло времени в минутах
-    TimeLeft = TimeLeft - sumTimeM;
-    setTime(TimeLeft);
+    setTime(TimeLeft - sumTimeM);
   }
   addLog("End ПОЛОСКАНИЕ");
 }
@@ -95,6 +94,11 @@ void spin(int mode) {
     // Пытаемся DEFAULT_SPIN_COUNT (количество попыток выхода на режим отжима) раз отжать
     for (int i = 0; i < DEFAULT_SPIN_COUNT; i = i + 1) {
 
+      // Включим контроль вибрации
+      fl_Vibro_Control = true;
+      // Выключим признак срабатывания
+      fl_Vibro = false;
+
       pump_on (20);
       SetMinimalPOWER();
 
@@ -110,16 +114,16 @@ void spin(int mode) {
       // Ждем пока обороты "устаканятся"
       delay2(MOTOR_WAIT_STRAIGHTEN_TIMER2);
 
-      // Включим контроль вибрации
-      fl_Vibro_Control = true;
-      // Выключим признак срабатывания
-      fl_Vibro = false;
-
       addLog("Плавно увеличиваем скорость до MOTOR_SPEED_STRAIGHTEN_UNBALANCE");
       for (int i = MOTOR_SPEED_STRAIGHTEN_MAX1; i <= MOTOR_SPEED_STRAIGHTEN_UNBALANCE; i = i + 1) {
         if (pwmSpeed > i) {
-          pwmSet = pwmSpeed;
-          pwmSetMinMax();
+          if (pwmSpeed < MOTOR_SPEED_STRAIGHTEN_UNBALANCE_MAX) {
+            pwmSet = pwmSpeed;
+            pwmSetMinMax();
+          } else {
+            pwmSet = MOTOR_SPEED_STRAIGHTEN_UNBALANCE_MAX;
+            pwmSetMinMax();
+          }
         } else {
           pwmSet = i;
           pwmSetMinMax();
@@ -127,13 +131,13 @@ void spin(int mode) {
         if (DEBUG_LEVEL >= 2) {
           addLog("Увеличиваем скорость pwmSpeed: " + String(pwmSpeed) + ", pwmSet: " + String(pwmSet) + ", MOTOR_SPEED_STRAIGHTEN_UNBALANCE: " + String(MOTOR_SPEED_STRAIGHTEN_UNBALANCE));
         }
-        delay2(2000);
+        delay2(3000); // Небольшая скорость, просто пауза, на такой скорости вибрацию не контролируем, т.к. белье еще не закрепилось на барабане
       }
       
-      delay2(3000);
-      // Измеряем вибрацию 10 раз
-      for (int i = 1; i <= 10; i = i + 1) {
-        delay3(3000); // Скорость 50-55 об/мн, пауза и проверка на вибрацию
+      delay2(5000);
+      // Измеряем вибрацию 5 раз
+      for (int i = 1; i <= 5; i = i + 1) {
+        delay3(3000); // Скорость 50-80 об/мн, пауза и проверка на вибрацию
         if (fl_Vibro) {
           break;
         }

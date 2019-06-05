@@ -12,21 +12,17 @@ void delay3(unsigned long mS) {
   double pwmOutMax = pwmOut;
   double pwmSpeedMin = pwmSpeed;
   double pwmSpeedMax = pwmSpeed;
-  double pwmSpeedSecMin = pwmSpeedSec;
-  double pwmSpeedSecMax = pwmSpeedSec;
   
   while ((millis() - millis_d) <= mS )  {
     getLevelVibro();
     SumMidVibro = SumMidVibro + AcMax;
     CountMidVibro++;
-    
-    if (pwmOut < pwmOutMin) pwmOutMin = pwmOut;
-    if (pwmOut > pwmOutMax) pwmOutMax = pwmOut;
-    if (pwmSpeed > 0) {
+
+    if(pwmSpeed > 0) {
+      if (pwmOut < pwmOutMin) pwmOutMin = pwmOut;
+      if (pwmOut > pwmOutMax) pwmOutMax = pwmOut;
       if (pwmSpeed < pwmSpeedMin) pwmSpeedMin = pwmSpeed;
       if (pwmSpeed > pwmSpeedMax) pwmSpeedMax = pwmSpeed;
-      if (pwmSpeedSec < pwmSpeedSecMin) pwmSpeedSecMin = pwmSpeedSec;
-      if (pwmSpeedSec > pwmSpeedSecMax) pwmSpeedSecMax = pwmSpeedSec;
     }
   }
   if (CountMidVibro > 0) {
@@ -36,9 +32,9 @@ void delay3(unsigned long mS) {
   }
   addLog("AcMax: " + String(AcMax));
   addLog(String(pwmOut) + "," + String(pwmOutMin) + ", " + String(pwmOutMax) + "," + String(pwmOutMax - pwmOutMin));
-  addLog(String(pwmSpeed) + "," + String(pwmSpeedMin) + "," + String(pwmSpeedMax) + "," + String(pwmSpeedMax - pwmSpeedMin)  + " === " + String(pwmSpeedSec) + ", " + String(pwmSpeedSecMin) + "," + String(pwmSpeedSecMax) + "," + String(pwmSpeedSecMax - pwmSpeedSecMin));
+  addLog(String(pwmSpeed) + "," + String(pwmSpeedMin) + "," + String(pwmSpeedMax) + "," + String(pwmSpeedMax - pwmSpeedMin));
 
-  if (pwmSpeed > 0 && pwmSpeedMax - pwmSpeedMin > 10) {
+  if (pwmSpeedMax - pwmSpeedMin > 3) {
     addLog("ДИСБАЛАНС ПО ТАХО!");
     fl_Vibro = true;
   }
