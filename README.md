@@ -9,7 +9,6 @@ pinout in the file doc.ino
 ![](https://raw.githubusercontent.com/Nihixi/The-control-unit-washing-machine-LG-WD80187-on-arduino-mega/master/raw/5.jpg)
 ![](https://raw.githubusercontent.com/Nihixi/The-control-unit-washing-machine-LG-WD80187-on-arduino-mega/master/raw/6.jpg)
 ![](https://raw.githubusercontent.com/Nihixi/The-control-unit-washing-machine-LG-WD80187-on-arduino-mega/master/raw/7.jpg)
-![](https://raw.githubusercontent.com/Nihixi/The-control-unit-washing-machine-LG-WD80187-on-arduino-mega/master/raw/8.jpg)
 ![](https://raw.githubusercontent.com/Nihixi/The-control-unit-washing-machine-LG-WD80187-on-arduino-mega/master/raw/9.jpg)
 
 
