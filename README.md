@@ -2,6 +2,8 @@
 
 The functionality completely repeats the original programs for washing and displaying information on the control panel
 
+Original wires and connectors were used to connect the motor, heating element, water valve, and door lock.
+
 pinout in the file doc.ino
 
 ![](https://raw.githubusercontent.com/Nihixi/The-control-unit-washing-machine-LG-WD80187-on-arduino-mega/master/raw/1.jpg)
