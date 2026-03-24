@@ -20,7 +20,7 @@ pinout in the file doc.ino
 
 ![](https://raw.githubusercontent.com/Nihixi/The-control-unit-washing-machine-LG-WD80187-on-arduino-mega/master/raw/9.jpg)
 
-Ссылка на Инфостарт:<br>
+![](https://infostart.ru/bitrix/templates/sandbox_empty/assets/tpl/abo/img/logo.svg)<br>
 <a href=https://infostart.ru/1c/articles/2643396/>Часть 1. День, когда из стиралки пошел синий дымок</a><br>
 <a href=https://infostart.ru/1c/articles/2645551/>Часть 2. Железо и реверс-инжиниринг</a><br>
 <a href=https://infostart.ru/1c/articles/2646800/>Часть 3. Софт</a>
